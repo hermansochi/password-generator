@@ -35,36 +35,34 @@ docker-pull:
 docker-build:
 	docker compose build --pull
 
-
 react-clear:
 	docker run --rm -v ${PWD}/react:/app -w /app alpine sh -c 'rm -rf .ready build'
 
 react-init: react-yarn-install
 
 react-yarn-install:
-	docker compose run --rm react-node-cli yarn install
+	docker compose run --rm password-node-cli yarn install
 
 react-ready:
 	docker run --rm -v ${PWD}/react:/app -w /app alpine touch .ready
 
 react-lint:
-	docker compose run --rm react-node-cli yarn eslint
-	docker compose run --rm react-node-cli yarn stylelint
+	docker compose run --rm password-node-cli yarn eslint
+	docker compose run --rm password-node-cli yarn stylelint
 
 react-lint-fix:
-	docker compose run --rm react-node-cli yarn eslint-fix
+	docker compose run --rm password-node-cli yarn eslint-fix
 
 react-test-watch:
-	docker compose run --rm react-node-cli yarn test
+	docker compose run --rm password-node-cli yarn test
 
 react-test:
-	docker compose run --rm react-node-cli yarn test --watchAll=false
+	docker compose run --rm password-node-cli yarn test --watchAll=false
 
-
-build: build-api build-frontend
+build: build-frontend
 
 build-frontend:
-	docker --log-level=debug build --pull --file=react/docker/production/nginx/Dockerfile --tag=${REGISTRY}/pet-react:${IMAGE_TAG} react
+	docker --log-level=debug build --pull --file=react/docker/production/nginx/Dockerfile --tag=${REGISTRY}/password-react:${IMAGE_TAG} react
 
 try-build:
 	REGISTRY=localhost IMAGE_TAG=0 make build
@@ -72,7 +70,7 @@ try-build:
 push: push-react
 
 push-react:
-	docker push ${REGISTRY}/pet-react:${IMAGE_TAG}
+	docker push ${REGISTRY}/password-react:${IMAGE_TAG}
 
 deploy:
 	ssh -o StrictHostKeyChecking=no deploy@${HOST} -p ${PORT} 'rm -rf site_${BUILD_NUMBER} && mkdir site_${BUILD_NUMBER}'
