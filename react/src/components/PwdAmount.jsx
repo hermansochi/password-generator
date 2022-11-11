@@ -5,9 +5,9 @@ import { setPwdAmount } from './../store/AppSlice';
 export const PwdAmount = () => {
 	const dispatch = useDispatch();
 	const checkAmount = (e) => {
-		if (e.target.value <= 0) {
+		if (Number(e.target.value) <= 0) {
 			e.target.value = 1;
-		} else if (e.target.value > 100) {
+		} else if (Number(e.target.value) > 100) {
 			e.target.value = 100;
 		}
 		dispatch(setPwdAmount({pwdAmount: Number(e.target.value)}));

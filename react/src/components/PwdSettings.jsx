@@ -1,20 +1,20 @@
 import React from "react";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setPwdUppercase,
+				setPwdLowercase,
+				setPwdNumbers,
+				setPwdSymbols,
+				setExcludeSimilar,
+				setExcludeDublicate } from './../store/AppSlice';
 
 export const PwdSettings = () => {
-	const { complexity,
-					pwdUppercase,
+	const dispatch = useDispatch();
+	const { pwdUppercase,
 					pwdLowercase,
 					pwdNumbers,
 					pwdSymbols,
 					excludeSimilar,
 					excludeDublicate } = useSelector((state) => state.app);
-
-	let isEnabled = false;
-
-	if (complexity !== 0) {
-		isEnabled = true;
-	}
 
 	return (
 		<>
@@ -23,8 +23,9 @@ export const PwdSettings = () => {
 					<label className="cursor-pointer label">
 						<span className="label-text text-base w-full">Allow Uppercase (ABC)</span>
 						<input type="checkbox"
-							disabled={isEnabled}
+							disabled={true}
 							checked={pwdUppercase}
+							onChange={() => dispatch(setPwdUppercase({ pwdUppercase: !pwdUppercase }))}
 							className={`checkbox checkbox-success ml-2`}
 						/>
 					</label>
@@ -33,8 +34,8 @@ export const PwdSettings = () => {
 					<label className="cursor-pointer label">
 						<span className="label-text text-base w-full">Allow Lowercase (abc)</span>
 						<input type="checkbox"
-							disabled={isEnabled}
 							checked={pwdLowercase}
+							onChange={() => dispatch(setPwdLowercase({ pwdLowercase: !pwdLowercase }))}
 							className={`checkbox checkbox-success ml-2`}
 						/>
 					</label>
@@ -43,8 +44,8 @@ export const PwdSettings = () => {
 					<label className="cursor-pointer label">
 						<span className="label-text text-base w-full">Allow Numbers (0-9)</span>
 						<input type="checkbox"
-							disabled={isEnabled}
 							checked={pwdNumbers}
+							onChange={() => dispatch(setPwdNumbers({ pwdNumbers: !pwdNumbers }))}
 							className={`checkbox checkbox-success ml-2`}
 						/>
 					</label>
@@ -53,8 +54,8 @@ export const PwdSettings = () => {
 					<label className="cursor-pointer label">
 						<span className="label-text text-base w-full">Allow Symbols (!@#$%^&*()+)</span>
 						<input type="checkbox"
-							disabled={isEnabled}
 							checked={pwdSymbols}
+							onChange={() => dispatch(setPwdSymbols({ pwdSymbols: !pwdSymbols }))}
 							className={`checkbox checkbox-success ml-2`}
 						/>
 					</label>
@@ -63,8 +64,8 @@ export const PwdSettings = () => {
 					<label className="cursor-pointer label">
 						<span className="label-text text-base w-full">Exclude Similar (iI1loO0)</span>
 						<input type="checkbox"
-							disabled={isEnabled}
 							checked={excludeSimilar}
+							onChange={() => dispatch(setExcludeSimilar({ excludeSimilar: !excludeSimilar }))}
 							className={`checkbox checkbox-success ml-2`}
 						/>
 					</label>
@@ -73,8 +74,8 @@ export const PwdSettings = () => {
 					<label className="cursor-pointer label">
 						<span className="label-text text-base w-full">Exclude Duplicate Characters (pp)</span>
 						<input type="checkbox"
-							disabled={isEnabled}
 							checked={excludeDublicate}
+							onChange={() => dispatch(setExcludeDublicate({ excludeDublicate: !excludeDublicate }))}
 							className={`checkbox checkbox-success ml-2`}
 						/>
 					</label>

@@ -8,8 +8,8 @@ const initialState = {
 		pwdLowercase: true,
 		pwdNumbers: true,
 		pwdSymbols: true,
-		excludeSimilar: false,
-		excludeDublicate: false
+		excludeSimilar: true,
+		excludeDublicate: true
 };
 
 export const appSlice = createSlice({

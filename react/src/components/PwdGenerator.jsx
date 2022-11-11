@@ -13,8 +13,8 @@ export const PwdGenerator = () => {
 	const uppercaseExcludeSimilar = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
 	const lowercase = 'abcdefghijklmnopqrstuvwxyz';
 	const lowercaseExcludeSimilar = 'abcdefghjkmnpqrstuvwxyz';
-	const symbols = '!@#$%^&*()+,-./:;<=>?[]^_{|}~'; 
-	//const symbols = '!@#$%^&*()+';
+	//const symbols = '!@#$%^&*()+,-./:;<=>?[]^_{|}~'; 
+	const symbols = '!@#$%^&*()+';
 
 	if (options.pwdUppercase) {
 		if (options.excludeSimilar) {
@@ -42,10 +42,9 @@ export const PwdGenerator = () => {
 	}
 
 	while (pwdList.length < options.pwdAmount) {
-
 		let password = '';
 		let symbolsCounter = 0;
-		while (password.length <= options.pwdLength) {
+		while (password.length <= options.pwdLength - 1) {
 			let randomNumber = Math.floor(Math.random() * alphabet.length);
 			let nextSymbol = alphabet.substring(randomNumber, randomNumber + 1);
 			if (options.pwdSymbols && symbols.indexOf(nextSymbol) !== -1) {
@@ -62,7 +61,7 @@ export const PwdGenerator = () => {
 			password += nextSymbol;
 		}
 		if (!options.excludeDublicate || !(/(.)\1+/.test(password))) {
-			pwdList.push(password + ' - ' + symbolsCounter);
+			pwdList.push(password);
 		}
 	}
 

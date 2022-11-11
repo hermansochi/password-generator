@@ -6,10 +6,10 @@ import { setPwdLength } from './../store/AppSlice';
 export const PwdLength = () => {
 	const dispatch = useDispatch();
 	const checkLength = (e) => {
-		if (e.target.value <= 4) {
+		if (Number(e.target.value) <= 4) {
 			e.target.value = 4;
-		} else if (e.target.value >= 65) {
-			e.target.value = 64;
+		} else if (Number(e.target.value) >= 50) {
+			e.target.value = 50;
 		}
 		dispatch(setPwdLength({pwdLength: Number(e.target.value)}));
 	};
