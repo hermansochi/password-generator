@@ -16,7 +16,7 @@ export const PwdAmount = () => {
 	const pwdAmount = useSelector((state) => state.app.pwdAmount);
 
 	return (
-		<div className="form-control flex whitespace-nowrap justify-center">
+		<div className="flex whitespace-nowrap justify-center">
 			<label className="input-group">
 				<span>Passwords amount</span>
 				<input type="number"

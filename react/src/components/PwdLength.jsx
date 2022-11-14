@@ -17,7 +17,7 @@ export const PwdLength = () => {
 	const pwdLength = useSelector((state) => state.app.pwdLength);
 
 	return (
-		<div className="form-control flex whitespace-nowrap justify-center">
+		<div className="flex whitespace-nowrap justify-center mb-4 sm:mb-0">
 			<label className="input-group">
 				<span>Password length</span>
 				<input type="number"

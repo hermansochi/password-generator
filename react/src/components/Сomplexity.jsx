@@ -18,16 +18,21 @@ export const Сomplexity = () => {
 	}
 	return (
 		<>
-			<input type="range" min="0" max="5" value={complexity} className={ color } step="1"
+			<input type="range"
+				min="0"
+				max="5"
+				value={complexity}
+				className={ color }
+				step="1"
 				onChange={(e) => dispatch(setComplexity({complexity: Number(e.target.value)}))}
 			/>
-			<div className="w-full flex justify-between text-sm px-2">
-				<span className="mr-4">Custom</span>
-				<span className="mx-4">Very simple</span>
-				<span className="mx-4">Simple</span>
-				<span className="mx-4">Normal</span>
-				<span className="mx-4">Complex</span>
-				<span className="ml-4">Insane</span>
+			<div className="w-full flex justify-between text-xs sm:text-sm px-2">
+				<span className="mr-1 sm:mr-4">Custom</span>
+				<span className="mx-1 sm:mx-4">Very simple</span>
+				<span className="mx-1 sm:mx-4">Simple</span>
+				<span className="mx-1 sm:mx-4">Normal</span>
+				<span className="mx-1 sm:mx-4">Complex</span>
+				<span className="mx-1 sm:mx-4">Insane</span>
 			</div>
 		</>
 	);

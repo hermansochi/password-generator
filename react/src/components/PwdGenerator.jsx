@@ -67,7 +67,7 @@ export const PwdGenerator = () => {
 
 	return (
 		<>
-			<div className="flex flex-col font-mono text-lg textarea textarea-bordered w-full">
+			<div className="flex flex-col font-mono text-sm sm:text-lg textarea textarea-bordered w-full">
 				{
 					pwdList.map((item) => <div key={item}>{item}</div>)
 				}

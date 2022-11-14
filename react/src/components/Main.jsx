@@ -8,8 +8,8 @@ import { PwdGenerator  } from './PwdGenerator';
 export default function Main() {
   return (
     <>
-      <div className="relative mockup-window border bg-success w-[650px] mt-10">
-      <div className="absolute top-2 left-24 text-xl font-bold">Password Generator</div>
+      <div className="relative mockup-window border bg-success w-[650px] sm:mt-10">
+      <div className="absolute top-3 left-24 text-xl font-bold">Password Generator</div>
         <div className="flex justify-center px-0 py-0 bg-base-200">
           <div className="hero bg-base-200">
             <div className="hero-content flex-col">
@@ -21,7 +21,7 @@ export default function Main() {
                   <Сomplexity />
                 </div>
                 <div className="py-4 w-full">
-                  <div className="flex flex-row justify-between">
+                  <div className="flex flex-col sm:flex-row sm:justify-between">
                     <PwdLength />
                     <PwdAmount />
                   </div>
