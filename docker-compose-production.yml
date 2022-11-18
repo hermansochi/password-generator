@@ -6,7 +6,6 @@ services:
             NODE_ENV: production
         networks:
             - traefik-public
-            - default
         deploy:
             labels:
                 - traefik.enable=true
@@ -20,13 +19,7 @@ services:
                 - traefik.http.routers.password.entrypoints=https
                 - traefik.http.routers.password.tls=true
                 - traefik.http.routers.password.tls.certResolver=letsEncrypt
-            mode: replicated
-            replicas: 1
-            update_config:
-                parallelism: 1
-                delay: 10s
-
 
 networks:
     traefik-public:
-        name: traefik-public
+        external: true

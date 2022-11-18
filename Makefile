@@ -78,13 +78,10 @@ deploy:
 	envsubst < docker-compose-production.yml > docker-compose-production-env.yml
 	scp -o StrictHostKeyChecking=no -P ${PORT} docker-compose-production-env.yml deploy@${HOST}:site_pwd_${BUILD_NUMBER}/docker-compose.yml
 	rm -f docker-compose-production-env.yml
-	ssh -o StrictHostKeyChecking=no deploy@${HOST} -p ${PORT} 'cd site_pwd_${BUILD_NUMBER} && docker stack deploy  --compose-file docker-compose.yml server --with-registry-auth --prune'
+	ssh -o StrictHostKeyChecking=no deploy@${HOST} -p ${PORT} 'cd site_pwd_${BUILD_NUMBER} && docker stack deploy  --compose-file docker-compose.yml pwd --with-registry-auth --prune'
 
 deploy-clean:
 	rm -f docker-compose-production-env.yml
 
 rollback:
-	ssh -o StrictHostKeyChecking=no deploy@${HOST} -p ${PORT} 'cd site_pwd_${BUILD_NUMBER} && docker stack deploy --compose-file docker-compose.yml auction --with-registry-auth --prune'
-
-validate-jenkins:
-	curl --user ${USER} -X POST -F "jenkinsfile=<Jenkinsfile" ${HOST}/pipeline-model-converter/validate
+	ssh -o StrictHostKeyChecking=no deploy@${HOST} -p ${PORT} 'cd site_pwd_${BUILD_NUMBER} && docker stack deploy --compose-file docker-compose.yml pwd --with-registry-auth --prune'
